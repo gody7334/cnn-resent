@@ -43,6 +43,7 @@ tf.app.flags.DEFINE_integer('eval_batch_count', 50, 'Number of batches to eval.'
 tf.app.flags.DEFINE_bool('eval_once', False, 'Whether evaluate the model only once.')
 tf.app.flags.DEFINE_string('log_root', '', 'Directory to keep the checkpoints. Should be a parent directory of FLAGS.train_dir/eval_dir.')
 tf.app.flags.DEFINE_integer('num_gpus', 0, 'Number of gpus used for training. (0 or 1)')
+tf.app.flags.DEFINE_integer('num_residual_units', 5, 'Number of residual unit')
 
 def train(hps):
   """Training loop."""
@@ -196,7 +197,7 @@ def main(_):
                              num_classes=num_classes,
                              min_lrn_rate=0.0001,
                              lrn_rate=0.1,
-                             num_residual_units=15,
+                             num_residual_units=FLAGS.num_residual_units,
                              use_bottleneck=False,
                              weight_decay_rate=0.0002,
                              relu_leakiness=0.1,
